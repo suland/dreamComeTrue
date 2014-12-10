@@ -1,9 +1,10 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-
-import views.html.*;
+import models.Person;
+import play.data.Form;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.index;
 
 public class Application extends Controller {
 
@@ -12,7 +13,7 @@ public class Application extends Controller {
     }
 
     public static Result addPerson() {
-        return ok(index.render("Hello Suworld."));
+            Person person = Form.form(Person.class).bindFromRequest().get();
+            return redirect(controllers.routes.Application.index());
+        }
     }
-
-}
